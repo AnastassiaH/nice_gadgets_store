@@ -1,7 +1,7 @@
-import React, { useCallback, useContext } from "react";
-import styles from "./CartItemCard.module.scss";
-import { CartItem } from "../../types";
-import { CartContext } from "../../context/CartContext";
+import React, { useCallback, useContext } from 'react';
+import styles from './CartItemCard.module.scss';
+import { CartItem } from '../../types';
+import { CartContext } from '../../context/CartContext';
 
 type Props = {
   product: CartItem;
@@ -12,18 +12,18 @@ export const CartItemCard: React.FC<Props> = ({ product }) => {
 
   const deleteItem = useCallback((id: string | undefined) => {
     if (cartItems) {
-      updateCartItems(cartItems.filter((item) => item.product?.itemId !== id));
+      updateCartItems(cartItems.filter(item => item.product?.itemId !== id));
     }
   }, []);
 
   const increaseAmount = useCallback(() => {
     if (cartItems) {
       const currentItem = cartItems.find(
-        (item) => item.product?.itemId === product.product?.itemId
+        item => item.product?.itemId === product.product?.itemId,
       );
 
       const currentIndex = cartItems.findIndex(
-        (item) => item.product?.itemId === product.product?.itemId
+        item => item.product?.itemId === product.product?.itemId,
       );
 
       if (currentItem) {
@@ -36,11 +36,11 @@ export const CartItemCard: React.FC<Props> = ({ product }) => {
   const decreaseAmount = useCallback(() => {
     if (cartItems) {
       const currentItem = cartItems.find(
-        (item) => item.product?.itemId === product.product?.itemId
+        item => item.product?.itemId === product.product?.itemId,
       );
 
       const currentIndex = cartItems.findIndex(
-        (item) => item.product?.itemId === product.product?.itemId
+        item => item.product?.itemId === product.product?.itemId,
       );
 
       if (currentItem) {

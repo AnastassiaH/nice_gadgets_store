@@ -1,12 +1,10 @@
-@import "../../styles/vars";
-@import "../../styles/fonts";
+@import '../../styles/vars';
+@import '../../styles/fonts';
 @import '../../styles/mixins';
 
-.header {
-  &--mobile {
-    @include on-tablet {
-      display: none;
-    }
+.headerMobile {
+  @include on-tablet {
+    display: none;
   }
 }
 
@@ -58,27 +56,27 @@
   padding: 16px;
   background-repeat: no-repeat;
   background-position: center;
+}
 
-  &--menu {
-    background-image: url(../../../public/img/icons/icon-menu.svg);
-  }
+.iconMenu {
+  background-image: url(../../../public/img/icons/icon-menu.svg);
+}
 
-  &--close {
-    background-image: url(../../../public/img/icons/icon-close.svg);
-    @include on-tablet {
-      display: none;
-    }
+.iconClose {
+  background-image: url(../../../public/img/icons/icon-close.svg);
+  @include on-tablet {
+    display: none;
   }
+}
 
-  &--heart {
-    background-image: url(../../../public/img/icons/icon-heart.svg);
-    position: relative;
-  }
+.iconHeart {
+  background-image: url(../../../public/img/icons/icon-heart.svg);
+  position: relative;
+}
 
-  &--cart {
-    background-image: url(../../../public/img/icons/icon-cart.svg);
-    position: relative;
-  }
+.iconCart {
+  background-image: url(../../../public/img/icons/icon-cart.svg);
+  position: relative;
 }
 
 .cartItemsAmount {
@@ -129,7 +127,7 @@
     height: 64px;
   }
 
-  &__icons {
+  .menuIcons {
     height: 64px;
     display: flex;
     flex-direction: row;
@@ -144,14 +142,14 @@
       height: 64px;
     }
 
-    .nav__link {
+    .navLink {
       width: 50%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-content: center;
 
-      @include hover (border-bottom, 2px solid $primary);
+      @include hover(border-bottom, 2px solid $primary);
 
       &:first-child {
         border-right: 1px solid $elements;
@@ -166,6 +164,47 @@
       @include on-desktop {
         width: 64px;
       }
+    }
+  }
+}
+
+.menuIcons {
+  height: 64px;
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid $elements;
+
+  @include on-tablet {
+    height: 48px;
+    border-top: none;
+  }
+
+  @include on-desktop {
+    height: 64px;
+  }
+
+  .navLink {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    box-sizing: border-box;
+
+    @include hover(border-bottom, 2px solid $primary);
+
+    &:first-child {
+      border-right: 1px solid $elements;
+      border-left: 1px solid $elements;
+    }
+
+    @include on-tablet {
+      margin: 0;
+      padding: 0;
+    }
+
+    @include on-desktop {
+      width: 64px;
     }
   }
 }
@@ -185,7 +224,7 @@
     height: 100%;
   }
 
-  &__list {
+  .navList {
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -201,7 +240,7 @@
     }
   }
 
-  &__item {
+  .navItem {
     list-style-type: none;
     display: flex;
     justify-content: center;
@@ -219,7 +258,7 @@
     }
   }
 
-  &__link {
+  .navLink {
     text-decoration: none;
     color: $secondary;
     text-transform: uppercase;
@@ -232,7 +271,7 @@
     padding-block: 8px;
     border-bottom: 2px solid transparent;
 
-    @include hover (color, $primary);
+    @include hover(color, $primary);
 
     @include on-tablet {
       height: 100%;
@@ -243,7 +282,7 @@
       box-sizing: border-box;
     }
 
-    &--active {
+    .navLinkActive {
       color: $primary;
       border-bottom: 2px solid $primary;
     }

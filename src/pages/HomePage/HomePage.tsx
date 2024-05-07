@@ -1,16 +1,12 @@
-import React, {
-  useEffect,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
-import { NavLink } from "react-router-dom";
-import { PicturesSlider } from "../../components/PicturesSlider";
-import { ProductsContext } from "../../context/ProductsContext";
-import { fetchProducts } from "../../services/products";
-import { ProductsSlider } from "../../components/ProductsSlider";
-import { Product } from "../../types";
-import styles from "./HomePage.module.scss";
+/* eslint-disable @typescript-eslint/indent */
+import React, { useEffect, useContext, useMemo, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { PicturesSlider } from '../../components/PicturesSlider';
+import { ProductsContext } from '../../context/ProductsContext';
+import { fetchProducts } from '../../services/products';
+import { ProductsSlider } from '../../components/ProductsSlider';
+import { Product } from '../../types';
+import styles from './HomePage.module.scss';
 
 export const HomePage: React.FC = () => {
   const { goods, updateGoods } = useContext(ProductsContext);
@@ -24,9 +20,9 @@ export const HomePage: React.FC = () => {
       setIsLoading(true);
 
       fetchProducts()
-        .then((data) => updateGoods(data as Product[]))
-        .catch((e) => {
-          throw new Error();
+        .then(data => updateGoods(data as Product[]))
+        .catch(e => {
+          throw new Error(e);
         })
         .finally(() => setIsLoading(false));
     }
@@ -37,34 +33,34 @@ export const HomePage: React.FC = () => {
       goods
         ? [...goods]
             .sort((a, b) => b.fullPrice - a.fullPrice)
-            .map((good) => ({ ...good, fullPrice: 0 }))
+            .map(good => ({ ...good, fullPrice: 0 }))
         : [],
-    [goods]
+    [goods],
   );
 
   const hotPricesGoods = useMemo(
     () => (goods ? [...goods].sort((a, b) => b.price - a.price) : []),
-    [goods]
+    [goods],
   );
 
   const phonesAmount = useMemo(
     () =>
-      goods ? goods.filter((good) => good.category === "phones").length : null,
-    [goods]
+      goods ? goods.filter(good => good.category === 'phones').length : null,
+    [goods],
   );
 
   const tabletsAmount = useMemo(
     () =>
-      goods ? goods.filter((good) => good.category === "tablets").length : null,
-    [goods]
+      goods ? goods.filter(good => good.category === 'tablets').length : null,
+    [goods],
   );
 
   const accessoriesAmount = useMemo(
     () =>
       goods
-        ? goods.filter((good) => good.category === "accessories").length
+        ? goods.filter(good => good.category === 'accessories').length
         : null,
-    [goods]
+    [goods],
   );
 
   return (
@@ -72,15 +68,15 @@ export const HomePage: React.FC = () => {
       <div className={styles.wrapper}>
         <h1 hidden>Product Catalog</h1>
         <h2 className={styles.title}>Welcome to Nice Gadgets store!</h2>
-        <PicturesSlider/>
+        <PicturesSlider />
       </div>
-      <div className={styles["brand-new-container"]}>
-        <h2 className={styles["brand-new-title"]}>Brand new models</h2>
+      <div className={styles['brand-new-container']}>
+        <h2 className={styles['brand-new-title']}>Brand new models</h2>
         <ProductsSlider goods={brandNewGoods} isLoading={isLoading} />
       </div>
-      <div className={styles["categories-container"]}>
-        <h2 className={styles["categories-title"]}>Shop by category</h2>
-        <div className={styles["categories-flex"]}>
+      <div className={styles['categories-container']}>
+        <h2 className={styles['categories-title']}>Shop by category</h2>
+        <div className={styles['categories-flex']}>
           <NavLink className={styles.categoryLink} to="/phones">
             <div className={styles.category}>
               <img
@@ -88,8 +84,8 @@ export const HomePage: React.FC = () => {
                 src={categoryPhones}
                 alt="phones"
               />
-              <p className={styles["category-title"]}>Mobile phones</p>
-              <p className={styles["category-amount"]}>{phonesAmount} models</p>
+              <p className={styles['category-title']}>Mobile phones</p>
+              <p className={styles['category-amount']}>{phonesAmount} models</p>
             </div>
           </NavLink>
           <NavLink className={styles.categoryLink} to="/tablets">
@@ -99,8 +95,8 @@ export const HomePage: React.FC = () => {
                 src={categoryTablets}
                 alt="tablets"
               />
-              <p className={styles["category-title"]}>Tablets</p>
-              <p className={styles["category-amount"]}>
+              <p className={styles['category-title']}>Tablets</p>
+              <p className={styles['category-amount']}>
                 {tabletsAmount} models
               </p>
             </div>
@@ -112,8 +108,8 @@ export const HomePage: React.FC = () => {
                 src={categoryAccessories}
                 alt="accessories"
               />
-              <p className={styles["category-title"]}>Accessories</p>
-              <p className={styles["category-amount"]}>
+              <p className={styles['category-title']}>Accessories</p>
+              <p className={styles['category-amount']}>
                 {accessoriesAmount} models
               </p>
             </div>

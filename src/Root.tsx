@@ -1,17 +1,17 @@
-import React from "react";
-import { HashRouter as Router, Routes, Route } from "react-router-dom";
-import App from "./App";
-import { HomePage } from "./pages/HomePage/HomePage";
-import { AccessoriesPage } from "./pages/AccessoriesPage/AccessoriesPage";
-import { TabletsPage } from "./pages/TabletsPage";
-import { PhonesPage } from "./pages/PhonesPage";
-import { CartPage } from "./pages/CartPage";
-import { FavoritesPage } from "./pages/FavoritesPage";
-import { NotFoundPage } from "./pages/NotFoundPage";
-import { ProductsProvider } from "./context/ProductsContext";
-import { ProductDetailsPage } from "./pages/ProductDetailsPage/ProductDetailsPage";
-import { CartProvider } from "./context/CartContext";
-import { FavoritesProvider } from "./context/FavoritesContext";
+import React from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import App from './App';
+import { HomePage } from './pages/HomePage/HomePage';
+import { AccessoriesPage } from './pages/AccessoriesPage/AccessoriesPage';
+import { TabletsPage } from './pages/TabletsPage';
+import { PhonesPage } from './pages/PhonesPage';
+import { CartPage } from './pages/CartPage';
+import { FavoritesPage } from './pages/FavoritesPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { ProductsProvider } from './context/ProductsContext';
+import { ProductDetailsPage } from './pages/ProductDetailsPage';
+import { CartProvider } from './context/CartContext';
+import { FavoritesProvider } from './context/FavoritesContext';
 
 export const Root = () => (
   <React.StrictMode>

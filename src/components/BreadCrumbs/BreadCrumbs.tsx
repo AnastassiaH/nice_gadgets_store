@@ -1,6 +1,6 @@
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import styles from "./BreadCrumbs.module.scss";
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import styles from './BreadCrumbs.module.scss';
 
 type Props = {
   details?: string;
@@ -8,7 +8,7 @@ type Props = {
 
 export const Breadcrumbs: React.FC<Props> = ({ details }) => {
   const { pathname } = useLocation();
-  const category = pathname.split("/")[1];
+  const category = pathname.split('/')[1];
   const categoryWord = category.charAt(0).toUpperCase() + category.slice(1);
 
   return (

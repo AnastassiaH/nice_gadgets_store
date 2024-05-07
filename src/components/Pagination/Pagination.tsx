@@ -1,6 +1,6 @@
-import React, {useCallback} from "react";
-import ReactPaginate from "react-paginate";
-import "./Pagination.scss";
+import React from 'react';
+import ReactPaginate from 'react-paginate';
+import './Pagination.scss';
 
 type Props = {
   initialPage: string | null;
@@ -17,7 +17,7 @@ export const Pagination: React.FC<Props> = ({
     <ReactPaginate
       breakLabel="..."
       nextLabel=" "
-      onPageChange={(event) => {
+      onPageChange={(event: any) => {
         handlePageClick(event.selected);
       }}
       pageCount={pageCount}

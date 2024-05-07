@@ -1,12 +1,12 @@
-import React from "react";
-import styles from "./Footer.module.scss";
-import { Link } from "react-router-dom";
+import React from 'react';
+import styles from './Footer.module.scss';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const logoUrl = `${process.env.PUBLIC_URL}/img/logo.svg`;
 
   const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -15,7 +15,10 @@ export const Footer: React.FC = () => {
       <nav className={styles.nav}>
         <ul className={styles.navList}>
           <li className={styles.navItem}>
-            <Link to="https://github.com/AnastassiaH/product_catalog/" className={styles.navLink}>
+            <Link
+              to="https://github.com/AnastassiaH/product_catalog/"
+              className={styles.navLink}
+            >
               Github
             </Link>
           </li>
@@ -32,7 +35,9 @@ export const Footer: React.FC = () => {
         </ul>
       </nav>
       <div className={styles.backToTopBlock}>
-        <p onClick={handleScrollToTop} className={styles.backToTop}>Back to top</p>
+        <p onClick={handleScrollToTop} className={styles.backToTop}>
+          Back to top
+        </p>
         <button
           className={styles.backToTopButton}
           onClick={handleScrollToTop}

@@ -1,119 +1,111 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import styles from "./Header.module.scss";
-import { CartContext } from "../../context/CartContext";
-import { FavoritesContext } from "../../context/FavoritesContext";
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import styles from './Header.module.scss';
+import { CartContext } from '../../context/CartContext';
+import { FavoritesContext } from '../../context/FavoritesContext';
 
 export const Header: React.FC = () => {
   const logoUrl = `${process.env.PUBLIC_URL}/img/logo.svg`;
-  const [isActive, setIsActive] = useState(false);
+  const [isMenuActive, setIsMenuActive] = useState(false);
   const { cartItems } = useContext(CartContext);
   const { favoriteItems } = useContext(FavoritesContext);
 
   useEffect(() => {
-    if (isActive) {
-      document.body.style.overflow = "hidden";
+    if (isMenuActive) {
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
 
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     };
-  }, [isActive]);
+  }, [isMenuActive]);
 
-  let cartItemsAmount = useMemo(
+  const cartItemsAmount = useMemo(
     () =>
       cartItems ? cartItems.reduce((acc, item) => acc + item.amount, 0) : 0,
-    [cartItems]
+    [cartItems],
   );
 
   const toggleMenu = () => {
-    setIsActive(!isActive);
+    setIsMenuActive(!isMenuActive);
   };
 
   return (
     <>
-      <div className={styles["header--mobile"]}>
+      <div className={styles.headerMobile}>
         <div className={styles.top}>
           <Link className={styles.logoLink} to="/">
             <img src={logoUrl} alt="" />
           </Link>
           <button onClick={toggleMenu} className={styles.button}>
-            <span className={`${styles.icon} ${styles["icon--menu"]}`}></span>
+            <span className={`${styles.icon} ${styles.iconMenu}`}></span>
           </button>
         </div>
       </div>
-      <aside className={`${styles.menu} ${isActive ? styles.active : ""}`}>
+      <aside className={`${styles.menu} ${isMenuActive ? styles.active : ''}`}>
         <div className={styles.top}>
           <Link
             className={styles.logoLink}
             to="/"
-            onClick={() => setIsActive(false)}
+            onClick={() => setIsMenuActive(false)}
           >
             <img src={logoUrl} alt="" />
           </Link>
           <button onClick={toggleMenu} className={styles.button}>
-            <span className={`${styles.icon} ${styles["icon--close"]}`}></span>
+            <span className={`${styles.icon} ${styles.iconClose}`}></span>
           </button>
         </div>
         <nav className={styles.nav}>
-          <ul className={styles["nav__list"]}>
+          <ul className={styles.navList}>
             <li
-              className={styles["nav__item"]}
-              onClick={() => setIsActive(false)}
+              className={styles.navItem}
+              onClick={() => setIsMenuActive(false)}
             >
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  `${styles["nav__link"]} ${
-                    isActive ? styles["nav__link--active"] : ""
-                  }`
+                  `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`
                 }
               >
                 Home
               </NavLink>
             </li>
             <li
-              className={styles["nav__item"]}
-              onClick={() => setIsActive(false)}
+              className={styles.navItem}
+              onClick={() => setIsMenuActive(false)}
             >
               <NavLink
                 to="/phones"
                 className={({ isActive }) =>
-                  `${styles["nav__link"]} ${
-                    isActive ? styles["nav__link--active"] : ""
-                  }`
+                  `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`
                 }
               >
                 Phones
               </NavLink>
             </li>
             <li
-              className={styles["nav__item"]}
-              onClick={() => setIsActive(false)}
+              className={styles.navItem}
+              onClick={() => setIsMenuActive(false)}
             >
               <NavLink
                 to="/tablets"
                 className={({ isActive }) =>
-                  `${styles["nav__link"]} ${
-                    isActive ? styles["nav__link--active"] : ""
-                  }`
+                  `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`
                 }
               >
                 Tablets
               </NavLink>
             </li>
             <li
-              className={styles["nav__item"]}
-              onClick={() => setIsActive(false)}
+              className={styles.navItem}
+              onClick={() => setIsMenuActive(false)}
             >
               <NavLink
                 to="/accessories"
                 className={({ isActive }) =>
-                  `${styles["nav__link"]} ${
-                    isActive ? styles["nav__link--active"] : ""
-                  }`
+                  `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`
                 }
               >
                 Accessories
@@ -121,17 +113,15 @@ export const Header: React.FC = () => {
             </li>
           </ul>
         </nav>
-        <div className={styles["menu__icons"]}>
+        <div className={styles.menuIcons}>
           <NavLink
             to="/favorites"
-            onClick={() => setIsActive(false)}
+            onClick={() => setIsMenuActive(false)}
             className={({ isActive }) =>
-              `${styles["nav__link"]} ${
-                isActive ? styles["nav__link--active"] : ""
-              }`
+              `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`
             }
           >
-            <span className={`${styles.icon} ${styles["icon--heart"]}`}>
+            <span className={`${styles.icon} ${styles.iconHeart}`}>
               {favoriteItems.length > 0 && (
                 <span className={styles.cartItemsAmount}>
                   {favoriteItems.length}
@@ -141,14 +131,12 @@ export const Header: React.FC = () => {
           </NavLink>
           <NavLink
             to="/cart"
-            onClick={() => setIsActive(false)}
+            onClick={() => setIsMenuActive(false)}
             className={({ isActive }) =>
-              `${styles["nav__link"]} ${
-                isActive ? styles["nav__link--active"] : ""
-              }`
+              `${styles.navLink} ${isActive ? styles.navLinkActive : ''}`
             }
           >
-            <span className={`${styles.icon} ${styles["icon--cart"]}`}>
+            <span className={`${styles.icon} ${styles.iconCart}`}>
               {cartItemsAmount > 0 && (
                 <span className={styles.cartItemsAmount}>
                   {cartItemsAmount}

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getPhones } from "../../services/phones";
-import { getTablets } from "../../services/tablets";
-import { getAccessories } from "../../services/accessories";
-import { ProductDetailed } from "../../types";
-import { Loader } from "../../components/Loader";
-import { Breadcrumbs } from "../../components/BreadCrumbs";
-import { ProductsSlider } from "../../components/ProductsSlider";
-import { Footer } from "../../components/Footer";
-import { BackButton } from "../../components/BackButton";
-import { AddToCartButton } from "../../components/AddToCartButton";
-import { FavoriteButton } from "../../components/FavoriteButton";
-import styles from "./ProductDetailsPage.module.scss";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getPhones } from '../../services/phones';
+import { getTablets } from '../../services/tablets';
+import { getAccessories } from '../../services/accessories';
+import { ProductDetailed } from '../../types';
+import { Loader } from '../../components/Loader';
+import { Breadcrumbs } from '../../components/BreadCrumbs';
+import { ProductsSlider } from '../../components/ProductsSlider';
+import { Footer } from '../../components/Footer';
+import { BackButton } from '../../components/BackButton';
+import { AddToCartButton } from '../../components/AddToCartButton';
+import { FavoriteButton } from '../../components/FavoriteButton';
+import styles from './ProductDetailsPage.module.scss';
 
 export const ProductDetailsPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,39 +19,41 @@ export const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<ProductDetailed>();
   const [mainImageIndex, setMainImageIndex] = useState(0);
   const { pathname } = useLocation();
-  const category = pathname.split("/")[1];
-  const itemId = pathname.split("/")[2];
+  const category = pathname.split('/')[1];
+  const itemId = pathname.split('/')[2];
 
   useEffect(() => {
     setIsLoading(true);
 
     const data =
-      category === "phones"
+      category === 'phones'
         ? getPhones()
-        : category === "tablets"
-        ? getTablets()
-        : category === "accessories"
-        ? getAccessories()
-        : null;
+        : category === 'tablets'
+          ? getTablets()
+          : category === 'accessories'
+            ? getAccessories()
+            : null;
 
     if (data) {
       data
         .then((goods: ProductDetailed[]) => {
           setCategoryGoods(goods);
-          const product = goods.find((good) => good.id === itemId);
-          setProduct(product);
+          const currProduct = goods.find(good => good.id === itemId);
+
+          setProduct(currProduct);
         })
-        .catch((e) => {
-          throw new Error();
+        .catch(e => {
+          throw new Error(e);
         })
         .finally(() => setIsLoading(false));
     }
   }, []);
 
   useEffect(() => {
-    const product = categoryGoods?.find((good) => good.id === itemId);
-    setProduct(product);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const currProduct = categoryGoods?.find(good => good.id === itemId);
+
+    setProduct(currProduct);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [itemId]);
 
   if (isLoading) {
@@ -112,7 +114,7 @@ export const ProductDetailsPage: React.FC = () => {
                 <div className={styles.capacityBlock}>
                   <p className={styles.detailsText}>Select capacity</p>
                   <div className={styles.capacityOptions}>
-                    {product?.capacityAvailable.map((item) => (
+                    {product?.capacityAvailable.map(item => (
                       <p
                         key={item}
                         className={
@@ -155,7 +157,7 @@ export const ProductDetailsPage: React.FC = () => {
             <div className={styles.info}>
               <div className={styles.about}>
                 <h3 className={styles.infoTitle}>About</h3>
-                {product?.description.map((item) => (
+                {product?.description.map(item => (
                   <p key={item.title} className={styles.aboutDescription}>
                     {item.text[0]}
                   </p>

@@ -1,9 +1,9 @@
-import React from "react";
-import { Product } from "../../types";
-import { ProductCard } from "../ProductCard";
-import { useSearchParams } from "react-router-dom";
-import { Pagination } from "../Pagination";
-import styles from "./ProductList.module.scss";
+import React from 'react';
+import { Product } from '../../types';
+import { ProductCard } from '../ProductCard';
+import { useSearchParams } from 'react-router-dom';
+import { Pagination } from '../Pagination';
+import styles from './ProductList.module.scss';
 
 type ProductListProps = {
   itemsPerPage: number;
@@ -15,7 +15,7 @@ export const ProductList: React.FC<ProductListProps> = ({
   items,
 }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialPage = searchParams.get("page");
+  const initialPage = searchParams.get('page');
   const itemOffset = initialPage
     ? (+initialPage * itemsPerPage) % items.length
     : 0;
@@ -27,12 +27,15 @@ export const ProductList: React.FC<ProductListProps> = ({
   const handlePageClick = (value: number) => {
     if (+value > 0) {
       const params = new URLSearchParams(searchParams);
-      params.set("page", (value + 1).toString());
+
+      params.set('page', (value + 1).toString());
       setSearchParams(params);
     }
+
     if (+value === 0) {
       const params = new URLSearchParams(searchParams);
-      params.delete("page");
+
+      params.delete('page');
       setSearchParams(params);
     }
   };

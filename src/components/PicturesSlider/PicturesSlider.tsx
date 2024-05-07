@@ -1,8 +1,8 @@
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./PicturesSlider.scss";
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './PicturesSlider.scss';
 
 export const PicturesSlider: React.FC = () => {
   const imageArray = [
@@ -20,10 +20,11 @@ export const PicturesSlider: React.FC = () => {
     autoplay: true,
     autoplaySpeed: 5000,
   };
+
   return (
     <div className="banner-container">
       <Slider {...settings}>
-        {imageArray.map((image) => (
+        {imageArray.map(image => (
           <div key={image} className="image-container">
             <img src={image} alt="image" />
           </div>

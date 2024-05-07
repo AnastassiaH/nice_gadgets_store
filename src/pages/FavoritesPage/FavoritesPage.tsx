@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
-import styles from "./FavoritesPage.module.scss";
-import { Breadcrumbs } from "../../components/BreadCrumbs";
-import { FavoritesContext } from "../../context/FavoritesContext";
-import { Product } from "../../types";
-import { ProductCard } from "../../components/ProductCard";
+import React, { useContext } from 'react';
+import styles from './FavoritesPage.module.scss';
+import { Breadcrumbs } from '../../components/BreadCrumbs';
+import { FavoritesContext } from '../../context/FavoritesContext';
+import { Product } from '../../types';
+import { ProductCard } from '../../components/ProductCard';
 
 export const FavoritesPage: React.FC = () => {
   const { favoriteItems } = useContext(FavoritesContext);
+
   return (
     <div className={styles.container}>
       <Breadcrumbs />
@@ -25,7 +26,7 @@ export const FavoritesPage: React.FC = () => {
       ) : (
         <>
           <p className={styles.emptyMessage}>
-            You don't have favorite items yet
+            You do not have favorite items yet
           </p>
         </>
       )}

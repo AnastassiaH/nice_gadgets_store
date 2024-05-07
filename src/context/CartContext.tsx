@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from "react";
-import { CartItem } from "../types";
+import React, { useState, useCallback } from 'react';
+import { CartItem } from '../types';
 
 type Props = {
   children: React.ReactNode;

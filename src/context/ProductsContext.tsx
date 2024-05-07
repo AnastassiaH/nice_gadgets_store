@@ -15,7 +15,7 @@ export const ProductsContext = React.createContext<ContextType>({
   updateGoods: ([]) => {},
 });
 
-export const ProductsProvider: React.FC<Props> = ({children}) => {
+export const ProductsProvider: React.FC<Props> = ({ children }) => {
   const [goods, setGoods] = useState<Product[]>([]);
 
   const updateGoods = useCallback((data: Product[]) => {
@@ -25,7 +25,7 @@ export const ProductsProvider: React.FC<Props> = ({children}) => {
   }, []);
 
   return (
-    <ProductsContext.Provider value={{goods, updateGoods}}>
+    <ProductsContext.Provider value={{ goods, updateGoods }}>
       {children}
     </ProductsContext.Provider>
   );

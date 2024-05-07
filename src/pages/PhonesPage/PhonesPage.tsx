@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useMemo, useContext } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Product } from "../../types";
-import { Breadcrumbs } from "../../components/BreadCrumbs";
-import { ProductsContext } from "../../context/ProductsContext";
-import { fetchProducts } from "../../services/products";
-import { Loader } from "../../components/Loader";
-import styles from "./PhonesPage.module.scss";
-import { ProductList } from "../../components/ProductList/ProductList";
+import React, { useEffect, useState, useMemo, useContext } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { Product } from '../../types';
+import { Breadcrumbs } from '../../components/BreadCrumbs';
+import { ProductsContext } from '../../context/ProductsContext';
+import { fetchProducts } from '../../services/products';
+import { Loader } from '../../components/Loader';
+import styles from './PhonesPage.module.scss';
+import { ProductList } from '../../components/ProductList/ProductList';
 
 export const PhonesPage: React.FC = () => {
   const [phones, setPhones] = useState<Product[]>([]);
@@ -16,16 +16,16 @@ export const PhonesPage: React.FC = () => {
   const { goods, updateGoods } = useContext(ProductsContext);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const sortBy = searchParams.get("sort") || "age";
-  const perPage = searchParams.get("perPage");
+  const sortBy = searchParams.get('sort') || 'age';
+  const perPage = searchParams.get('perPage');
 
   useEffect(() => {
     if (!goods?.length) {
       setIsLoading(true);
       fetchProducts()
-        .then((data) => updateGoods(data as Product[]))
-        .catch((e) => {
-          throw new Error();
+        .then(data => updateGoods(data as Product[]))
+        .catch(e => {
+          throw new Error(e);
         })
         .finally(() => setIsLoading(false));
     }
@@ -33,48 +33,52 @@ export const PhonesPage: React.FC = () => {
 
   useEffect(() => {
     if (goods?.length) {
-      setPhones(goods.filter((good) => good.category === "phones"));
+      setPhones(goods.filter(good => good.category === 'phones'));
     }
   }, [goods]);
 
   const phonesAmount = useMemo(() => (phones ? phones.length : 0), [phones]);
   const sortByOptions = useMemo(
     () => [
-      { name: "Newest", value: "age" },
-      { name: "Alphabetically", value: "title" },
-      { name: "Cheapest", value: "price" },
+      { name: 'Newest', value: 'age' },
+      { name: 'Alphabetically', value: 'title' },
+      { name: 'Cheapest', value: 'price' },
     ],
-    []
+    [],
   );
-  const itemsPerPageOptions = useMemo(() => ["4", "8", "16", "All"], []);
+  const itemsPerPageOptions = useMemo(() => ['4', '8', '16', 'All'], []);
 
   const onSortBySelected = (value: string) => {
     setIsSortActive(false);
     const params = new URLSearchParams(searchParams);
-    params.set("sort", value);
+
+    params.set('sort', value);
     setSearchParams(params);
   };
 
   const onPerPageSelected = (value: string) => {
     setIsPerPageActive(false);
     const params = new URLSearchParams(searchParams);
-    if (value === "All") {
-      params.delete("perPage");
-      params.delete("page");
+
+    if (value === 'All') {
+      params.delete('perPage');
+      params.delete('page');
       setSearchParams(params);
+
       return;
     }
-    params.set("perPage", `${value}`);
+
+    params.set('perPage', `${value}`);
     setSearchParams(params);
   };
 
   const sortedPhones = useMemo(() => {
     switch (sortBy) {
-      case "age":
+      case 'age':
         return [...phones.sort((a, b) => b.year - a.year)];
-      case "title":
+      case 'title':
         return [...phones].sort((a, b) => b.name.localeCompare(a.name));
-      case "price":
+      case 'price':
         return [...phones].sort((a, b) => a.price - b.price);
       default:
         return [...phones];
@@ -96,10 +100,7 @@ export const PhonesPage: React.FC = () => {
               }}
               onBlur={() => setIsSortActive(false)}
             >
-              {
-                sortByOptions.filter((option) => option.value === sortBy)[0]
-                  .name
-              }
+              {sortByOptions.filter(option => option.value === sortBy)[0].name}
               <span
                 className={`${styles.icon} ${
                   isSortActive ? styles.arrowUp : styles.arrowDown
@@ -108,11 +109,11 @@ export const PhonesPage: React.FC = () => {
             </button>
             <div
               className={`${styles.dropdownContent} ${
-                isSortActive ? styles.active : ""
+                isSortActive ? styles.active : ''
               }`}
             >
               <ul className={styles.content}>
-                {sortByOptions.map((option) => (
+                {sortByOptions.map(option => (
                   <li
                     className={styles.option}
                     key={option.name}
@@ -136,7 +137,7 @@ export const PhonesPage: React.FC = () => {
               }}
               onBlur={() => setIsPerPageActive(false)}
             >
-              {perPage ? perPage : "All"}
+              {perPage ? perPage : 'All'}
               <span
                 className={`${styles.icon} ${
                   isPerPageActive ? styles.arrowUp : styles.arrowDown
@@ -146,11 +147,11 @@ export const PhonesPage: React.FC = () => {
 
             <div
               className={`${styles.dropdownContent} ${
-                isPerPageActive ? styles.active : ""
+                isPerPageActive ? styles.active : ''
               }`}
             >
               <ul className={styles.content}>
-                {itemsPerPageOptions.map((option) => (
+                {itemsPerPageOptions.map(option => (
                   <li
                     className={styles.option}
                     key={option}
