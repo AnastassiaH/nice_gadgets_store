@@ -147,6 +147,7 @@
       height: 100%;
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       align-content: center;
 
       @include hover(border-bottom, 2px solid $primary);
