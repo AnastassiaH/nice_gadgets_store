@@ -1,21 +1,48 @@
-import React from 'react';
-import './App.scss';
+import React, { useContext, useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import "./App.scss";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { CartContext } from "./context/CartContext";
+import { FavoritesContext } from "./context/FavoritesContext";
 
-interface Props {
-  onClick: () => void;
-  children: React.ReactNode;
-}
+const App: React.FC = () => {
+  const { cartItems, updateCartItems } = useContext(CartContext);
+  const { favoriteItems, updateFavoriteItems } = useContext(FavoritesContext);
 
-export const Provider: React.FC<Props> = React.memo(({ onClick, children }) => (
-  <button type="button" onClick={onClick}>
-    {children}
-  </button>
-));
+  useEffect(() => {
+    const cartItemsInStorage = localStorage.getItem("cartItems");
+    if (cartItemsInStorage) {
+      updateCartItems(JSON.parse(cartItemsInStorage));
+    }
 
-export const App: React.FC = () => {
+    const favoriteItemsInStorage = localStorage.getItem("favoriteItems");
+    if (favoriteItemsInStorage) {
+      updateFavoriteItems(JSON.parse(favoriteItemsInStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (cartItems) {
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+  }, [cartItems]);
+
+  useEffect(() => {
+    if (favoriteItems.length > 0) {
+      localStorage.setItem("favoriteItems", JSON.stringify(favoriteItems));
+    }
+  }, [favoriteItems]);
+
   return (
-    <div className="starter">
-      <Provider onClick={() => ({})}>TodoList</Provider>
+    <div className="App">
+      <Header />
+      <div className="content">
+        <Outlet />
+      </div>
+      <Footer />
     </div>
   );
 };
+
+export default App;

@@ -1,0 +1,182 @@
+@import "../../styles/fonts";
+@import "../../styles/vars";
+@import "../../styles/mixins";
+
+.wrapper {
+  box-sizing: border-box;
+  
+  @include on-tablet {
+    padding-inline: $content-padding-tablet;
+  }
+
+  @include on-desktop {
+    max-width: 1136px;
+    margin: 0 auto;
+    padding-inline: 0;
+  }
+}
+
+.title {
+  font-family: Mont-Bold;
+  font-size: 32px;
+  line-height: 41px;
+  margin-block: 24px;
+  padding-inline: $content-padding-mobile;
+
+  @include on-tablet {
+    padding-inline: 0;
+    margin-block: 32px;
+    font-size: 48px;
+    line-height: 56px;
+    width: 60%;
+  }
+
+  @include on-desktop {
+    margin-block: 56px;
+    width: 100%;
+  }
+}
+
+.brand-new-container {
+  overflow: hidden;
+  width: 100%;
+  padding-left: $content-padding-mobile;
+  box-sizing: border-box;
+  position: relative;
+
+  @include on-tablet {
+    padding-left: $content-padding-tablet;
+  }
+
+  @include on-desktop {
+    max-width: 1136px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .brand-new-title {
+    font-family: Mont-Bold;
+    font-size: 22px;
+    line-height: 30px;
+    width: 40%;
+    color: $primary;
+    margin: 0;
+
+    @media (min-width: 520px) {
+      width: 33%;
+    }
+
+    @include on-tablet {
+      font-size: 30px;
+      line-height: 41px;
+      width: 50%;
+      margin-top: 15px;
+    }
+  }
+}
+
+.categories-container {
+  padding-top: 56px;
+  padding-bottom: 38px;
+  padding-inline: $content-padding-mobile;
+  box-sizing: border-box;
+
+  @include on-tablet {
+    padding-inline: $content-padding-tablet;
+  }
+
+  @include on-desktop {
+    max-width: 1136px;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 80px;
+  }
+
+  .categories-title {
+    font-family: Mont-Bold;
+    font-size: 22px;
+    line-height: 30px;
+    color: $primary;
+    margin: 0;
+    margin-bottom: 24px;
+  }
+
+  .categories-flex {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 32px;
+
+    @include on-tablet {
+      flex-direction: row;
+      column-gap: 16px;
+    }
+
+    @include on-desktop {
+      margin-bottom: 80px;
+    }
+  }
+
+  .categoryLink{
+    text-decoration: none;
+  }
+
+  .category {
+    .categoryImage {
+      width: 100%;
+      margin-bottom: 24px;
+    }
+
+    .category-title {
+      font-size: 20px;
+      line-height: 26px;
+      font-family: Mont-SemiBold;
+      color: $primary;
+      margin: 0;
+      margin-bottom: 4px;
+    }
+
+    .category-amount {
+      font-size: 14px;
+      line-height: 21px;
+      color: $secondary;
+      font-family: Mont-Regular;
+      text-decoration: none;
+      margin: 0;
+    }
+  }
+}
+
+.hotPricesContainer{
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  padding-left: 16px;
+
+  @include on-desktop {
+    max-width: 1136px;
+    margin: 0 auto;
+    padding-left: 0;
+  }
+
+  .hotPricesTitle {
+    font-family: Mont-Bold;
+    font-size: 22px;
+    line-height: 30px;
+    width: 40%;
+    color: $primary;
+    margin: 0;
+    margin-top: 10px;
+
+    @media (min-width: 520px) {
+      width: 33%;
+    }
+
+    @include on-tablet {
+      font-size: 30px;
+      line-height: 41px;
+      width: 50%;
+    }
+  }
+}

@@ -1,0 +1,111 @@
+@import "../../styles/fonts";
+@import "../../styles/vars";
+@import "../../styles/mixins";
+
+.container {
+  border: 1px solid $elements;
+  box-sizing: border-box;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  @include on-tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 24px;
+  }
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  column-gap: 16px;
+  align-items: center;
+}
+
+.title {
+  font-family: Mont-Regular;
+  font-size: 14px;
+  line-height: 21px;
+  color: $primary;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @include on-tablet {
+    min-width: 35%;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.delete {
+  flex-shrink: 0;
+  background-image: url(../../../public/img/icons/close-icon.svg);
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: none;
+  background-position: center;
+
+  background-repeat: no-repeat;
+  cursor: pointer;
+
+  @include hover (background-image, url(../../../public/img/icons/icon-close-primary.svg));
+}
+
+.decrease,
+.increase {
+  display: block;
+  background-color: transparent;
+  border: 1px solid $elements;
+  width: 32px;
+  height: 32px;
+  box-sizing: border-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+
+  @include hover (border-color, $primary);
+}
+
+.increase {
+  background-image: url(../../../public/img/icons/plus-icon.svg);
+}
+
+.decrease {
+  background-image: url(../../../public/img/icons/minus-icon.svg);
+}
+
+.decrease:disabled {
+  background-image: url(../../../public/img/icons/minus-icon-disabled.svg);
+  @include hover (border-color, $elements);
+}
+
+.cartItemImage {
+  height: 100%;
+  width: auto;
+}
+
+.price {
+  font-family: Mont-Bold;
+  line-height: 31px;
+  color: $primary;
+  font-size: 22px;
+  margin: 0;
+}
+
+.amount {
+  margin-inline: 16px;
+}

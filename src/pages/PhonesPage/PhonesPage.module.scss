@@ -1,0 +1,164 @@
+@import "../../styles/fonts";
+@import "../../styles/vars";
+@import "../../styles/mixins";
+
+.container {
+  box-sizing: border-box;
+  padding-inline: $content-padding-mobile;
+  padding-top: 24px;
+
+  @include on-tablet {
+    padding-inline: $content-padding-tablet;
+  }
+
+  @include on-desktop {
+    max-width: 1136px;
+    margin: 0 auto;
+  }
+}
+
+.pageHeading {
+  font-family: Mont-Bold;
+  font-size: 32px;
+  line-height: 41px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: $primary;
+  box-sizing: border-box;
+}
+
+.amount {
+  font-size: 14px;
+  line-height: 21px;
+  color: $secondary;
+  margin: 0;
+  margin-bottom: 32px;
+}
+
+.dropdowns {
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+  margin-bottom: 24px;
+}
+
+.sortByContainer {
+  width: 155px;
+  height: 40px;
+
+  @include on-tablet {
+    width: 187px;
+  }
+}
+.itemsOnPageContainer {
+  width: 136px;
+  height: 40px;
+}
+
+.phonesList {
+  display: flex;
+  flex-direction: row;
+  row-gap: 40px;
+  column-gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.phone {
+  // max-width: 288px;
+  // width: 229px;
+  // flex-grow: 1;
+  width: 100%;
+}
+
+.dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdownTrigger {
+  height: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid $elements;
+  padding-inline: 12px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 14px;
+  line-height: 21px;
+  color: $primary;
+  font-family: Mont-SemiBold;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+
+  @include hover("border-color", $secondary);
+
+  @include on-tablet {
+  }
+}
+
+.dropdownTrigger:focus {
+  border-color: $primary;
+}
+
+.dropdownContent {
+  background-color: #ffffff;
+  position: absolute;
+  margin-top: 4px;
+  width: 100%;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.2s;
+}
+
+.content {
+  list-style-type: none;
+  margin: 0;
+
+  border: 1px solid $elements;
+  box-sizing: border-box;
+  padding: 4px 12px 8px 12px;
+  width: 100%;
+}
+
+.option {
+  font-family: Mont-Regular;
+  font-size: 14px;
+  line-height: 21px;
+  height: 32px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: $secondary;
+  cursor: pointer;
+
+  @include hover("color", $primary);
+}
+
+.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.arrowUp {
+  background-image: url(../../../public/img/icons/icon-arrow-up-light.svg);
+}
+
+.arrowDown {
+  background-image: url(../../../public/img/icons/icon-arrow-down.svg);
+}

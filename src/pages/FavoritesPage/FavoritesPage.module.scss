@@ -1,0 +1,67 @@
+@import "../../styles/fonts";
+@import "../../styles/vars";
+@import "../../styles/mixins";
+
+.container {
+  box-sizing: border-box;
+  padding-inline: $content-padding-mobile;
+  padding-top: 24px;
+
+  @include on-tablet {
+    padding-inline: $content-padding-tablet;
+  }
+
+  @include on-desktop {
+    max-width: 1136px;
+    margin: 0 auto;
+  }
+}
+
+.title {
+  font-family: Mont-Bold;
+  font-size: 32px;
+  line-height: 41px;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: $primary;
+  box-sizing: border-box;
+}
+
+.amount {
+  font-size: 14px;
+  line-height: 21px;
+  color: $secondary;
+  margin: 0;
+  margin-bottom: 32px;
+}
+
+.productsList {
+  display: flex;
+  flex-direction: row;
+  row-gap: 40px;
+  column-gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.productsList::after {
+  @include on-tablet {
+    content: "";
+    flex: auto;
+  }
+}
+
+.itemCard {
+  max-width: 288px;
+  width: 229px;
+  flex-grow: 1;
+}
+
+.emptyMessage {
+  margin: 0;
+  font-family: Mont-SemiBold;
+  font-size: 20px;
+  line-height: 24px;
+  color: #313237;
+  margin-top: 32px;
+}

@@ -1,9 +1,10 @@
-import { createRoot } from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import { Root } from "./Root";
 
-import 'bulma/css/bulma.css';
-import '@fortawesome/fontawesome-free/css/all.css';
-import './index.scss';
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
-import { App } from './App';
-
-createRoot(document.getElementById('root') as HTMLDivElement).render(<App />);
+root.render(<Root />);

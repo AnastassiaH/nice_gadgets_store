@@ -1,0 +1,31 @@
+@import "../../styles/vars";
+@import "../../styles/fonts";
+@import "../../styles/mixins";
+
+.cartButton {
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: white;
+  font-size: 14px;
+  line-height: 21px;
+  font-family: Mont-Semibold;
+  background-color: $primary;
+  cursor: pointer;
+
+  @include hover('box-shadow', 0 3px 13px 0 rgba(23, 32, 49, 0.4))
+}
+
+.alreadyIn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid $elements;
+  color: $green;
+  font-size: 14px;
+  line-height: 21px;
+  font-family: Mont-Semibold;
+  box-sizing: border-box;
+}
